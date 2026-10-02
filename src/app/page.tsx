@@ -31,8 +31,8 @@ const stories = [
     tag: "Together",
     badge: ["Every", "family"],
     text: "Hand in hand with communities, government institutions, faith-based organizations and partners, we're building a brighter future for generations to come.",
-    image: "/images/outreach-group-3.jpg",
-    alt: "Children cheering together outside their school with the Divine Hope team",
+    image: "/images/outreach-group-2.jpg",
+    alt: "Children holding up gifts with the team and their teachers",
     strip: "bg-sun",
     side: "left",
   },
@@ -77,12 +77,12 @@ export default function Home() {
             <div className="relative aspect-square p-[8%]">
               <div className="cut-photo relative h-full w-full overflow-hidden">
                 <Image
-                  src="/images/hero-girls.jpg"
-                  alt="Three confident young girls standing with arms crossed"
+                  src="/images/outreach-group-3.jpg"
+                  alt="Children cheering together outside their school with the Divine Hope team"
                   fill
                   priority
                   sizes="(min-width: 1024px) 38rem, 92vw"
-                  className="object-cover object-[50%_30%]"
+                  className="object-cover object-[46%_50%]"
                 />
               </div>
             </div>
