@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Palette drawn from the Divine Hope logo: deep teal, sun gold, leaf green */
+  --color-ink: #0b2b2c;
+  --color-ink-2: #12393a;
+  --color-teal: #0f5d63;
+  --color-cream: #f5eedf;
+  --color-paper: #fbf7ee;
+  --color-sky: #86cfd3;
+  --color-sun: #f4b223;
+  --color-leaf: #8cc63f;
+  --color-clay: #e2703a;
+  --color-plum: #8e3b86;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --animate-marquee: marquee 38s linear infinite;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 }
 
+@theme inline {
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-bricolage);
+  --font-script: var(--font-caveat);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+/* Hand-cut shapes: slightly uneven edges, like paper collage */
+.cut-a {
+  clip-path: polygon(0 7%, 100% 0, 98.5% 100%, 1.5% 92%);
+}
+.cut-b {
+  clip-path: polygon(1% 0, 99% 5%, 100% 95%, 0 100%);
+}
+.cut-c {
+  clip-path: polygon(0 0, 100% 3%, 99% 100%, 1% 97%);
+}
+.cut-photo {
+  clip-path: polygon(14% 6%, 58% 0, 90% 12%, 100% 48%, 92% 84%, 60% 100%, 20% 95%, 2% 70%, 0 32%);
+}
+
+/* Above-the-fold entrance: CSS only, so it never waits on JavaScript */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--delay, 0ms);
+}
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee,
+  .rise {
+    animation: none;
+  }
 }

@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original source assets (optimized copies live in public/images)
+/*.jpg
+/*.jpeg
+/*.png
+.DS_Store
